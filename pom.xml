@@ -21,9 +21,9 @@
 		<spring.version>5.3.34</spring.version>
 		<junit.version>4.11</junit.version>
 		<log4j.version>1.2.17</log4j.version>
-		<sonar.host.url>http://54.221.74.74:9000/</sonar.host.url>
+		<sonar.host.url>http://34.199.175.153:9000</sonar.host.url>
 		<sonar.login>admin</sonar.login>
-		<sonar.password>passw0rd</sonar.password> 
+		<sonar.password>admin123</sonar.password> 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -83,13 +83,6 @@
 		</dependency>
 		
 		<!-- provided dependencies -->
-
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
-			<scope>provided</scope>
-		</dependency>
 		
 	</dependencies>
 	
@@ -97,14 +90,15 @@
 	
 	    <repository>
 	      <id>nexus</id>
-	      <name>KK FUNDA Releases Nexus Repository</name>
-	      <url>http://172.31.40.189:8081/repository/flipkart-release/</url>
+	      <name>webapprel</name>
+	      <url>http://35.170.170.231:8081/repository/webapprel/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
-	      <name>KK FUNDA Snapshot Nexus Repository </name>
-	      <url>http://172.31.40.189:8081/repository/flipkart-snapshot/</url>
+	      <name>webappsnap</name>
+	      <url>http://35.170.170.231:8081/repository/webappsnap/</url>
+
 	    </snapshotRepository>
 	    
 	</distributionManagement>
@@ -134,6 +128,12 @@
 					</webApp>
 				</configuration>
 			</plugin>
+				<plugin>
+  					<groupId>org.sonarsource.scanner.maven</groupId>
+ 					 <artifactId>sonar-maven-plugin</artifactId>
+  					<version>4.0.0.4121</version>
+				</plugin>
+
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -147,8 +147,7 @@
 				</configuration>
 			</plugin>
 			
-</plugins>
-	</build>
+			</plugins>
+		</build>
 	
-	
-</project>
+	</project>
