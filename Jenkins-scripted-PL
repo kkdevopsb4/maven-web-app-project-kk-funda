@@ -1,0 +1,30 @@
+node {
+    def mavenHome = tool name: "maven3.9.9", type: 'maven'
+
+    stage('Checkout') {
+        git branch: 'Devlop', credentialsId: '84b9e77b-9119-44b3-8f82-9239c7f2fc0f',
+        url: 'https://github.com/usharaniwin/maven-web-app-project.git'
+        }
+    stage('Compile') {
+        sh "${mavenHome}/bin/mvn clean compile"
+    }
+    stage('Build') {
+        sh "${mavenHome}/bin/mvn clean package"
+    }
+        stage('Sonar Report') {
+        sh "${mavenHome}/bin/mvn sonar:sonar"
+    }
+        stage('Deploy to Nexus') {
+            //curl -u admin:password123 http://3.92.105.74:8081/repository/abc-snapshot/
+        sh "${mavenHome}/bin/mvn clean deploy"
+    }
+    stage('Deploy to Tomacat')
+    {
+        sh """
+            curl -u svs:svs123 \
+            --upload-file /var/lib/jenkins/workspace/Jenkins-PL/target/maven-web-application.war \
+            "http://34.232.91.67:8080/manager/text/deploy?path=/maven-web-application&update=true"
+        """
+    }
+    
+}
